@@ -76,7 +76,7 @@ namespace TimeTraker
             this.panel1.MaximumSize = new System.Drawing.Size(410, 430);
             this.panel1.MinimumSize = new System.Drawing.Size(410, 80);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(410, 80);
+            this.panel1.Size = new System.Drawing.Size(410, 430);
             this.panel1.TabIndex = 0;
             // 
             // button1
@@ -128,6 +128,7 @@ namespace TimeTraker
             // 
             this.textBox1.Font = new System.Drawing.Font("Franklin Gothic Demi", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox1.Location = new System.Drawing.Point(27, 123);
+            this.textBox1.MaxLength = 50;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(312, 31);
             this.textBox1.TabIndex = 3;
@@ -171,11 +172,11 @@ namespace TimeTraker
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 80);
+            this.panel2.Location = new System.Drawing.Point(0, 430);
             this.panel2.MaximumSize = new System.Drawing.Size(410, 430);
             this.panel2.MinimumSize = new System.Drawing.Size(410, 80);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(410, 430);
+            this.panel2.Size = new System.Drawing.Size(410, 161);
             this.panel2.TabIndex = 1;
             // 
             // flowLayoutPanel1
@@ -227,11 +228,11 @@ namespace TimeTraker
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.pictureBox3);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 161);
+            this.panel3.Location = new System.Drawing.Point(0, 511);
             this.panel3.MaximumSize = new System.Drawing.Size(410, 430);
             this.panel3.MinimumSize = new System.Drawing.Size(410, 80);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(410, 430);
+            this.panel3.Size = new System.Drawing.Size(410, 80);
             this.panel3.TabIndex = 2;
             // 
             // flowLayoutPanel2

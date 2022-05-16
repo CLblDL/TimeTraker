@@ -222,10 +222,10 @@ namespace TimeTraker
 
                 DateTime dateTime = new DateTime();
 
-                IdDateBase.GetDateStartActive(item, dateTime);
+                dateTime = DateTime.Parse(IdDateBase.GetDateStartActive(item));
 
                 SqlCommand command = new SqlCommand(
-                $"INSERT INTO [TasksOver] (Name, Description, DateStart,DateFinish) VALUES (@Name, @Description, @DateStart, @DateFinish)",
+                $"INSERT INTO [TasksOver] (Name, Description, DateStart, DateFinish) VALUES (@Name, @Description, @DateStart, @DateFinish)",
                 sqlConnection);
                 
                 DateTime date = DateTime.Now;
@@ -235,11 +235,11 @@ namespace TimeTraker
                 command.Parameters.AddWithValue("DateStart", $"{dateTime.Month}/{dateTime.Day}/{dateTime.Year} {dateTime.Hour}:{dateTime.Minute}:{dateTime.Second}");
                 command.Parameters.AddWithValue("DateFinish", $"{date.Month}/{date.Day}/{date.Year} {date.Hour}:{date.Minute}:{date.Second}");
 
-
+                command.ExecuteNonQuery();
                 SqlCommand sqlCom = new SqlCommand($"DELETE FROM TasksActive WHERE Id = {item}", sqlConnection);
                 int result = sqlCom.ExecuteNonQuery();
 
-               command.ExecuteNonQuery().ToString();
+               
 
 
                 Zapoln zapoln = new Zapoln();

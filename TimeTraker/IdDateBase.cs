@@ -180,7 +180,7 @@ namespace TimeTraker
             return result;
         }
 
-        static public string GetDateStartActive(int id, DateTime dateTime)
+        static public string GetDateStartActive(int id)
         {
             string result;
             
@@ -196,10 +196,10 @@ namespace TimeTraker
                 result = "Ничего не поулчил";
             }
             sqlConnection.Close();
-            return dateTime.ToString(result);
+            return result;
         }
 
-        static public string GetDateStartOver(int id, DateTime dateTime)
+        static public string GetDateStartOver(int id)
         {
             string result;
 
@@ -215,10 +215,10 @@ namespace TimeTraker
                 result = "Ничего не поулчил";
             }
             sqlConnection.Close();
-            return dateTime.ToString(result);
+            return result;
         }
 
-        static public string GetDateFinishOver(int id, DateTime dateTime)
+        static public string GetDateFinishOver(int id)
         {
             string result;
 
@@ -234,7 +234,7 @@ namespace TimeTraker
                 result = "Ничего не поулчил";
             }
             sqlConnection.Close();
-            return dateTime.ToString(result);
+            return result;
         }
     }
 }
