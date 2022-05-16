@@ -76,7 +76,7 @@ namespace TimeTraker
             this.panel1.MaximumSize = new System.Drawing.Size(410, 430);
             this.panel1.MinimumSize = new System.Drawing.Size(410, 80);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(410, 430);
+            this.panel1.Size = new System.Drawing.Size(410, 80);
             this.panel1.TabIndex = 0;
             // 
             // button1
@@ -172,11 +172,11 @@ namespace TimeTraker
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 430);
+            this.panel2.Location = new System.Drawing.Point(0, 80);
             this.panel2.MaximumSize = new System.Drawing.Size(410, 430);
             this.panel2.MinimumSize = new System.Drawing.Size(410, 80);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(410, 161);
+            this.panel2.Size = new System.Drawing.Size(410, 430);
             this.panel2.TabIndex = 1;
             // 
             // flowLayoutPanel1
@@ -228,20 +228,20 @@ namespace TimeTraker
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.pictureBox3);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 511);
+            this.panel3.Location = new System.Drawing.Point(0, 161);
             this.panel3.MaximumSize = new System.Drawing.Size(410, 430);
             this.panel3.MinimumSize = new System.Drawing.Size(410, 80);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(410, 80);
+            this.panel3.Size = new System.Drawing.Size(410, 430);
             this.panel3.TabIndex = 2;
             // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(12, 89);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(12, 110);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(386, 329);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(386, 308);
             this.flowLayoutPanel2.TabIndex = 5;
             this.flowLayoutPanel2.WrapContents = false;
             // 
