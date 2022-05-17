@@ -130,6 +130,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="iTextSharp">
+      <Version>5.5.13.3</Version>
+    </PackageReference>
     <PackageReference Include="Mono.Gendarme">
       <Version>2.11.0.20121120</Version>
     </PackageReference>
