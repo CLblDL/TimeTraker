@@ -49,6 +49,7 @@ namespace TimeTraker
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -223,6 +224,7 @@ namespace TimeTraker
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(142)))), ((int)(((byte)(90)))));
+            this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.flowLayoutPanel2);
             this.panel3.Controls.Add(this.pictureBox6);
             this.panel3.Controls.Add(this.label4);
@@ -239,7 +241,7 @@ namespace TimeTraker
             // 
             this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(12, 110);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(12, 70);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(386, 308);
             this.flowLayoutPanel2.TabIndex = 5;
@@ -275,6 +277,16 @@ namespace TimeTraker
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 0;
             this.pictureBox3.TabStop = false;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(263, 387);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(125, 33);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "PDF";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainWinTime
             // 
@@ -325,5 +337,6 @@ namespace TimeTraker
         private System.Windows.Forms.Button button1;
         public System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         public System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Button button2;
     }
 }
