@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 
 namespace TimeTraker
 {
-    static class IdDateBase
+    public static class IdDateBase
     {
         static private readonly SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString);
 
