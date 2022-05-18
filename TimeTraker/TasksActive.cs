@@ -23,5 +23,10 @@ namespace TimeTraker
         {
             get => dateStart;
         }
+
+        public string DateStartString()
+        {
+            return $"{dateStart.Day}/{dateStart.Month}/{dateStart.Year}";
+        }
     }
 }

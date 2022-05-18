@@ -12,6 +12,10 @@ using System.Configuration;
 //using System.Data;
 using System.Data.SqlClient;
 
+using iTextSharp;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
 
 namespace TimeTraker
 {
@@ -126,8 +130,8 @@ namespace TimeTraker
                 zapolnActive.TaskOutActive();
 
                 Zapoln zapolnOver = new Zapoln();
-                zapolnActive.TaskOverAdd();
-                zapolnActive.TaskOutOver();
+                zapolnOver.TaskOverAdd();
+                zapolnOver.TaskOutOver();
                 
             }
             catch
@@ -180,8 +184,8 @@ namespace TimeTraker
             zapolnActive.TaskOutActive();
 
             Zapoln zapolnOver = new Zapoln();
-            zapolnActive.TaskOverAdd();
-            zapolnActive.TaskOutOver();
+            zapolnOver.TaskOverAdd();
+            zapolnOver.TaskOutOver();
 
             
 
@@ -222,10 +226,10 @@ namespace TimeTraker
 
                 DateTime dateTime = new DateTime();
 
-                IdDateBase.GetDateStartActive(item, dateTime);
+                dateTime = DateTime.Parse(IdDateBase.GetDateStartActive(item));
 
                 SqlCommand command = new SqlCommand(
-                $"INSERT INTO [TasksOver] (Name, Description, DateStart,DateFinish) VALUES (@Name, @Description, @DateStart, @DateFinish)",
+                $"INSERT INTO [TasksOver] (Name, Description, DateStart, DateFinish) VALUES (@Name, @Description, @DateStart, @DateFinish)",
                 sqlConnection);
                 
                 DateTime date = DateTime.Now;
@@ -235,11 +239,11 @@ namespace TimeTraker
                 command.Parameters.AddWithValue("DateStart", $"{dateTime.Month}/{dateTime.Day}/{dateTime.Year} {dateTime.Hour}:{dateTime.Minute}:{dateTime.Second}");
                 command.Parameters.AddWithValue("DateFinish", $"{date.Month}/{date.Day}/{date.Year} {date.Hour}:{date.Minute}:{date.Second}");
 
-
+                command.ExecuteNonQuery();
                 SqlCommand sqlCom = new SqlCommand($"DELETE FROM TasksActive WHERE Id = {item}", sqlConnection);
                 int result = sqlCom.ExecuteNonQuery();
 
-               command.ExecuteNonQuery().ToString();
+               
 
 
                 Zapoln zapoln = new Zapoln();
@@ -251,8 +255,8 @@ namespace TimeTraker
                 zapolnActive.TaskOutActive();
 
                 Zapoln zapolnOver = new Zapoln();
-                zapolnActive.TaskOverAdd();
-                zapolnActive.TaskOutOver();
+                zapolnOver.TaskOverAdd();
+                zapolnOver.TaskOutOver();
             }
             catch
             {
@@ -319,8 +323,8 @@ namespace TimeTraker
                 zapolnActive.TaskOutActive();
 
                 Zapoln zapolnOver = new Zapoln();
-                zapolnActive.TaskOverAdd();
-                zapolnActive.TaskOutOver();
+                zapolnOver.TaskOverAdd();
+                zapolnOver.TaskOutOver();
             }
             catch
             {
@@ -329,6 +333,126 @@ namespace TimeTraker
             }
 
             sqlConnection.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            List<TasksOver> tasksListOver = new List<TasksOver>();
+            try
+            {
+                List<int> id = IdDateBase.IdOver();
+
+                foreach (var item in id)
+                {
+                    string name = IdDateBase.GetNameOver(item);
+                    string description = IdDateBase.GetDescriptionOver(item);
+                    DateTime dateTime = new DateTime();
+
+                    dateTime = DateTime.Parse(IdDateBase.GetDateStartOver(item));
+
+                    DateTime dateTimeFinish = new DateTime();
+
+                    dateTimeFinish = DateTime.Parse(IdDateBase.GetDateFinishOver(item));
+
+                    TasksOver tasks = new TasksOver(item, name, description, dateTime, dateTimeFinish);
+                    tasksListOver.Add(tasks);
+                    //MessageBox.Show($"Элемент {tasks.GetId} содержит имя {tasks.GetName} описание {tasks.GetDescription}");
+                    //i++;
+
+                }
+            }
+            catch
+            {
+                MessageBox.Show("База данных не доступна");
+            }
+
+            try
+            {
+                string fg = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "Fradm.TTF");
+                BaseFont fgBaseFont = BaseFont.CreateFont(fg, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+                iTextSharp.text.Font fgFont = new iTextSharp.text.Font(fgBaseFont, 10);
+
+                Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
+                PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream("TestPDF.pdf", FileMode.Create));
+
+                doc.Open();
+                Paragraph paragraph = new Paragraph(10, "Отчет", fgFont);//интервал между строками, текст, шрифт
+                doc.Add(paragraph);
+
+                //////////////////////////////////////////////////////////////////
+                PdfPTable table = new PdfPTable(4);
+
+
+                table.AddCell("Date");
+                table.AddCell("Name");
+                table.AddCell("Description");
+                table.AddCell("Duration");
+
+
+                for (int i = 0; i < tasksListOver.Count; i++)
+                {
+                    table.AddCell(new Phrase($"{tasksListOver[i].DateStartString()}", fgFont));
+                    table.AddCell(new Phrase($"{tasksListOver[i].GetName}", fgFont));
+                    table.AddCell(new Phrase($"{tasksListOver[i].GetDescription}", fgFont));
+                    table.AddCell(new Phrase($"{tasksListOver[i].DurationTime()}", fgFont));
+
+                }
+
+
+
+                doc.Add(table);
+                //////////////////////////////////////////////////////////////////
+
+                doc.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Записи не отрисовались");
+            }
+
+            MessageBox.Show("PDF успешно создан!!!");
+        }
+
+        bool statusChange = true;
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            //bool statusChange = true;
+
+            
+            if (statusChange==false)
+            {
+
+                while (flowLayoutPanel2.Controls.Count > 0)
+                {
+                    var controltoremove = flowLayoutPanel2.Controls[0];
+                    flowLayoutPanel2.Controls.Remove(controltoremove);
+                    controltoremove.Dispose();
+                }
+
+                Zapoln zapolnOver = new Zapoln();
+                zapolnOver.TaskOverAdd();
+                zapolnOver.TaskOutOver();
+
+                
+            }
+            else if (statusChange==true)
+            {
+                while (flowLayoutPanel2.Controls.Count > 0)
+                {
+                    var controltoremove = flowLayoutPanel2.Controls[0];
+                    flowLayoutPanel2.Controls.Remove(controltoremove);
+                    controltoremove.Dispose();
+                }
+
+                Zapoln zapolnOver = new Zapoln();
+                zapolnOver.TaskOverAdd();
+                zapolnOver.TaskOutOverChange();
+
+                
+            }
+            statusChange = !statusChange;
         }
     }
 

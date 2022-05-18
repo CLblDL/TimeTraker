@@ -24,5 +24,13 @@ namespace TimeTraker
         {
             get => dateFinish;
         }
+
+        public string DurationTime()
+        {
+            TimeSpan dateDifference = dateFinish.Subtract(dateStart);
+            string formattedTimeSpan = string.Format("{0:D2}h, {1:D2}m, {2:D2}s", (int)dateDifference.TotalHours, dateDifference.Minutes, dateDifference.Seconds);
+            return formattedTimeSpan;
+        }
+
     }
 }
