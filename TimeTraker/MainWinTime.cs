@@ -130,8 +130,8 @@ namespace TimeTraker
                 zapolnActive.TaskOutActive();
 
                 Zapoln zapolnOver = new Zapoln();
-                zapolnActive.TaskOverAdd();
-                zapolnActive.TaskOutOver();
+                zapolnOver.TaskOverAdd();
+                zapolnOver.TaskOutOver();
                 
             }
             catch
@@ -184,8 +184,8 @@ namespace TimeTraker
             zapolnActive.TaskOutActive();
 
             Zapoln zapolnOver = new Zapoln();
-            zapolnActive.TaskOverAdd();
-            zapolnActive.TaskOutOver();
+            zapolnOver.TaskOverAdd();
+            zapolnOver.TaskOutOver();
 
             
 
@@ -255,8 +255,8 @@ namespace TimeTraker
                 zapolnActive.TaskOutActive();
 
                 Zapoln zapolnOver = new Zapoln();
-                zapolnActive.TaskOverAdd();
-                zapolnActive.TaskOutOver();
+                zapolnOver.TaskOverAdd();
+                zapolnOver.TaskOutOver();
             }
             catch
             {
@@ -323,8 +323,8 @@ namespace TimeTraker
                 zapolnActive.TaskOutActive();
 
                 Zapoln zapolnOver = new Zapoln();
-                zapolnActive.TaskOverAdd();
-                zapolnActive.TaskOutOver();
+                zapolnOver.TaskOverAdd();
+                zapolnOver.TaskOutOver();
             }
             catch
             {
@@ -411,6 +411,48 @@ namespace TimeTraker
             }
 
             MessageBox.Show("PDF успешно создан!!!");
+        }
+
+        bool statusChange = true;
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            //bool statusChange = true;
+
+            
+            if (statusChange==false)
+            {
+
+                while (flowLayoutPanel2.Controls.Count > 0)
+                {
+                    var controltoremove = flowLayoutPanel2.Controls[0];
+                    flowLayoutPanel2.Controls.Remove(controltoremove);
+                    controltoremove.Dispose();
+                }
+
+                Zapoln zapolnOver = new Zapoln();
+                zapolnOver.TaskOverAdd();
+                zapolnOver.TaskOutOver();
+
+                
+            }
+            else if (statusChange==true)
+            {
+                while (flowLayoutPanel2.Controls.Count > 0)
+                {
+                    var controltoremove = flowLayoutPanel2.Controls[0];
+                    flowLayoutPanel2.Controls.Remove(controltoremove);
+                    controltoremove.Dispose();
+                }
+
+                Zapoln zapolnOver = new Zapoln();
+                zapolnOver.TaskOverAdd();
+                zapolnOver.TaskOutOverChange();
+
+                
+            }
+            statusChange = !statusChange;
         }
     }
 

@@ -309,5 +309,81 @@ namespace TimeTraker
                 flowLayoutPanel2.Controls.Add(panel);
             }
         }
+
+
+        public void TaskOutOverChange()
+        {
+            for (int i = tasksListOver.Count-1; i >= 0; i--)
+            {
+                Panel panel = new Panel();
+                panel.Tag = i;
+                panel.AutoSize = true;
+                //panel.Width = 487;
+                //panel.Height = 122;
+                //panel.MinimumSize = new System.Drawing.Size(387, 1100);
+                panel.MaximumSize = new System.Drawing.Size(387, 0);
+                //panel.Controls.Add(DescrTask1);
+                //panel.Controls.Add(this.pictureBox13);
+                //panel.Controls.Add(this.pictureBox14);
+                //panel.Controls.Add(NameTask1);
+                //panel.Location = new System.Drawing.Point(4, 4);
+                //panel.Margin = new System.Windows.Forms.Padding(4);
+                //panel.Size = new System.Drawing.Size(487, 122);
+                //panel.TabIndex = 4;
+
+                Label NameTask1 = new Label();
+                NameTask1.AutoSize = true;
+                NameTask1.Font = new System.Drawing.Font("Franklin Gothic Medium", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                NameTask1.Location = new System.Drawing.Point(20, 16);
+                NameTask1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+                NameTask1.MaximumSize = new System.Drawing.Size(170, 0);
+                NameTask1.Name = "NameTask1";
+                NameTask1.Size = new System.Drawing.Size(124, 39);
+                NameTask1.TabIndex = 0;
+                NameTask1.Text = $"{tasksListOver[i].GetName}";
+                panel.Controls.Add(NameTask1);
+
+
+                Label DescrTask1 = new Label();
+                DescrTask1.AutoSize = true;
+                DescrTask1.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                DescrTask1.Location = new System.Drawing.Point(23, NameTask1.Height + 16);
+                DescrTask1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+                //DescrTask1.MaximumSize = new System.Drawing.Size(200, 26);
+                DescrTask1.Name = "DescrTask1";
+                //DescrTask1.Size = new System.Drawing.Size(166, 25);
+                DescrTask1.MaximumSize = new System.Drawing.Size(166, 0);
+                DescrTask1.TabIndex = 3;
+                DescrTask1.Text = $"{tasksListOver[i].GetDescription}";
+                panel.Controls.Add(DescrTask1);
+
+                Label timeLabel = new Label();
+                timeLabel.Location = new System.Drawing.Point(300, 33);
+                timeLabel.Margin = new System.Windows.Forms.Padding(4);
+                timeLabel.Name = $"{tasksListOver[i].GetId}";
+                timeLabel.Size = new System.Drawing.Size(67, 62);
+                timeLabel.Text = $"{tasksListOver[i].DurationTime()}";
+                //pictureBox13.TabIndex = 2;
+                timeLabel.TabStop = false;
+
+                MainWinTime.TaskActiveAdd(tasksListOver[i]);
+                timeLabel.Click += mainWinTime.buttonStopEvForActive;
+
+                panel.Controls.Add(timeLabel);
+
+                Label LabelDateStart = new Label();
+
+                LabelDateStart.Location = new System.Drawing.Point(230, 33);
+                LabelDateStart.Margin = new System.Windows.Forms.Padding(4);
+                LabelDateStart.Name = "pictureBox14";
+                LabelDateStart.Size = new System.Drawing.Size(67, 62);
+                LabelDateStart.Text = $"{tasksListOver[i].DateStartString()}";
+                //pictureBox14.TabIndex = 1;
+                LabelDateStart.TabStop = false;
+                panel.Controls.Add(LabelDateStart);
+
+                flowLayoutPanel2.Controls.Add(panel);
+            }
+        }
     }
 }
